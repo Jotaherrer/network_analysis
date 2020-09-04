@@ -17,5 +17,22 @@ if __name__ == '__main__':
     nodes_data.head()
 
     ### Building network
-    sof = nx.Graph()
+    G = nx.Graph()
 
+    for index, info in nodes_data.iterrows():
+        G.add_node(info['name'], group=info['group'], nodesize=info['nodesize'])
+
+    for index, info in edges_data.iterrows():
+        G.add_edge(info['source'], info['target'], weight=info['value'])
+
+    G.nodes
+    G.edges
+    G.number_of_nodes()
+    G.number_of_edges()
+    G.nodes['html']
+    G.nodes['python']
+    G.nodes['javascript']
+    G.degree()
+
+    # Average path length
+    nx.average_shortest_path_length(G)
